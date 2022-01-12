@@ -1,0 +1,145 @@
+<div *ngIf="pullZone" class="zone-details">
+  <mat-toolbar>
+    <span>Pull zone {{ pullZone.Name }}</span>
+  </mat-toolbar>
+
+  <form
+    class="new-zone-form"
+    [formGroup]="pullZoneForm"
+    (ngSubmit)="updateOrigin()"
+  >
+    <div class="zone-details__info">
+      <label>Name: </label><span>{{ pullZone.Name }}</span>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="zone-details__info">
+      <label>Origin: </label>
+      <span>{{ pullZone.OriginUrl }}</span>
+      <div class="inline-form">
+        <mat-form-field
+          *ngIf="editMode"
+          class="form-control__field"
+          appearance="fill"
+        >
+          <mat-label></mat-label>
+          <input matInput id="originUrl" formControlName="originUrl" />
+          <mat-error
+            *ngIf="
+              originUrl &&
+              originUrl.invalid &&
+              (originUrl.dirty || originUrl.touched)
+            "
+          >
+            <mat-error *ngIf="originUrl.errors?.['required']"
+              >Origin url is required.</mat-error
+            >
+            <mat-error *ngIf="originUrl.errors?.['maxlength']">
+              Origin url maximum length is
+              {{ originUrl.errors?.['maxlength'].requiredLength }} characters.
+            </mat-error>
+            <mat-error *ngIf="originUrl.errors?.['pattern']">
+              Origin url format is invalid.
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          *ngIf="!editMode"
+          mat-stroked-button
+          (click)="toggleEdit()"
+          color="primary"
+          type="button"
+        >
+          Edit
+        </button>
+
+        <button
+          *ngIf="editMode"
+          mat-stroked-button
+          color="primary"
+          type="submit"
+          [disabled]="!pullZoneForm.valid"
+        >
+          Save
+        </button>
+
+        <button
+          *ngIf="editMode"
+          mat-stroked-button
+          (click)="toggleEdit()"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="zone-details__info">
+      <label>Tier: </label><span>{{ pullZone.Type | zoneType }}</span>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="zone-details__info">
+      <label>Monthly traffic: </label
+      ><span>{{ pullZone.MonthlyBandwidthUsed | megaByte }}</span>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="zone-details__info">
+      <label>Monthly cost: </label
+      ><span>{{ pullZone.MonthlyCharges | currency }}</span>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="zone-details__info">
+      <label>Pricing regions</label>
+    </div>
+
+    <div class="zone-details__info">
+      <label>EnableGeoZoneUS: </label>
+      <pull-zone-geo-zone
+        [enabled]="pullZone.EnableGeoZoneUS"
+      ></pull-zone-geo-zone>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="zone-details__info">
+      <label>EnableGeoZoneEU: </label>
+      <pull-zone-geo-zone
+        [enabled]="pullZone.EnableGeoZoneEU"
+      ></pull-zone-geo-zone>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="zone-details__info">
+      <label>EnableGeoZoneASIA: </label>
+      <pull-zone-geo-zone
+        [enabled]="pullZone.EnableGeoZoneASIA"
+      ></pull-zone-geo-zone>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="zone-details__info">
+      <label>EnableGeoZoneSA: </label>
+      <pull-zone-geo-zone
+        [enabled]="pullZone.EnableGeoZoneSA"
+      ></pull-zone-geo-zone>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="zone-details__info">
+      <label>EnableGeoZoneAF: </label>
+      <pull-zone-geo-zone
+        [enabled]="pullZone.EnableGeoZoneAF"
+      ></pull-zone-geo-zone>
+      <mat-divider></mat-divider>
+    </div>
+  </form>
+</div>
+
+<div class="buttons">
+  <a mat-stroked-button routerLink="/pull-zone/list">Back</a>
+</div>

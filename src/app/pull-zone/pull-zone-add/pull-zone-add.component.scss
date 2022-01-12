@@ -1,0 +1,13 @@
+.form-control {
+  margin-top: 1rem;
+
+  &__label {
+    display: inline-block;
+    width: 5rem;
+  }
+
+  &__field {
+    width: 20rem;
+  }
+}
+

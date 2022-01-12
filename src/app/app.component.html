@@ -1,0 +1,15 @@
+<nav>
+  <button mat-button routerLink="">
+    Dashboard
+  </button>
+
+  <button mat-button [matMenuTriggerFor]="menu">Pull zone</button>
+  <mat-menu #menu="matMenu">
+    <a mat-menu-item routerLink="/pull-zone/list">List</a>
+    <a mat-menu-item routerLink="/pull-zone/add">Add</a>
+  </mat-menu>
+</nav>
+
+<main class="content">
+  <router-outlet></router-outlet>
+</main>

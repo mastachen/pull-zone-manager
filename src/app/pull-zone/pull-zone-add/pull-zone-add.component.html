@@ -1,0 +1,69 @@
+<mat-toolbar>
+  <span>New pull zone</span>
+</mat-toolbar>
+
+<form class="new-zone-form" [formGroup]="pullZoneForm" (ngSubmit)="add()">
+  <div class="form-control">
+    <label class="form-control__label" for="name">Name: </label>
+    <mat-form-field class="form-control__field" appearance="fill">
+      <mat-label></mat-label>
+      <input matInput id="name" formControlName="name" />
+      <mat-error
+        class="form-control__validation-error"
+        *ngIf="name && name.invalid && (name.dirty || name.touched)"
+      >
+        <mat-error *ngIf="name.errors?.['required']">Name is required.</mat-error>
+        <mat-error *ngIf="name.errors?.['maxlength']">
+          Username maximum length is
+          {{ name.errors?.['maxlength'].requiredLength }} characters.
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-control">
+    <label class="form-control__label" for="originUrl">Origin url: </label>
+    <mat-form-field class="form-control__field" appearance="fill">
+      <mat-label></mat-label>
+      <input matInput id="originUrl" formControlName="originUrl" />
+      <mat-error
+        *ngIf="
+          originUrl &&
+          originUrl.invalid &&
+          (originUrl.dirty || originUrl.touched)
+        "
+      >
+        <mat-error *ngIf="originUrl.errors?.['required']"
+          >Origin url is required.</mat-error
+        >
+        <mat-error *ngIf="originUrl.errors?.['maxlength']">
+          Origin url maximum length is
+          {{ originUrl.errors?.['maxlength'].requiredLength }} characters.
+        </mat-error>
+        <mat-error *ngIf="originUrl.errors?.['pattern']">
+          Origin url format is invalid.
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-control">
+    <label class="form-control__label" for="type">Type: </label>
+    <mat-form-field class="form-control__field--small" appearance="fill">
+      <mat-label></mat-label>
+      <mat-select formControlName="type">
+        <mat-option [value]="1"> Volume </mat-option>
+        <mat-option [value]="0"> Premium </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <button
+    mat-stroked-button
+    color="primary"
+    type="submit"
+    [disabled]="!pullZoneForm.valid"
+  >
+    Add
+  </button>
+</form>

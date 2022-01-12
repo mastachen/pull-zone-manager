@@ -1,0 +1,33 @@
+.zone-details {
+  margin-top: 1rem;
+
+  &__info {
+    margin-top: 1.5rem;
+
+    label {
+      font-weight: 500;
+      display: inline-block;
+      width: 10rem;
+    }
+
+    &--tabbed {
+      margin-left: .5rem;
+    }
+  }
+}
+
+.buttons {
+  margin-top: 1rem;
+}
+
+.inline-form {
+  display: inline-block;
+  
+  mat-form-field {
+    margin-left: .5rem;
+  }
+
+  button {
+    margin: 0 0 .5rem .5rem;
+  }
+}
