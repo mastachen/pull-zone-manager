@@ -1,6 +1,9 @@
-table {
-  width: 100%;
-  margin-top: 1rem;
+a {
+  margin-bottom: 1rem;
+}
+
+table, mat-paginator {
+  width: 70rem;
 }
 
 th.mat-sort-header-sorted {
